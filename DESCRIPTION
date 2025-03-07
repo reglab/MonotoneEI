@@ -1,0 +1,13 @@
+Package: MonotoneEI
+Type: Package
+Title: Implement Monotone Ecological Inference from Elzayn et al., 2025
+Version: 0.1.0
+Author: Claire Morton
+Maintainer: mortonc@stanford.edu
+Description: This package implements the Method of Bounds, Ecological Regression, 
+    and the Neighborhood Model to assist with ecological inference. It includes
+    functions to plot these bounds/point estimates and create bootstrap 
+    confidence intervals.
+License: 
+Encoding: UTF-8
+LazyData: true
