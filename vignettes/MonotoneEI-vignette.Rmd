@@ -1,0 +1,65 @@
+---
+title: "MonotoneEI-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MonotoneEI-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(dpi=200)
+```
+
+```{r setup}
+library(MonotoneEI)
+library(ggplot2)
+library(ggpubr)
+```
+
+`MonotoneEI` is a package designed to implement the methods in Elzayn et al., 2025. It calculates existing estimators for group-wise means and disparities (the Method of Bounds, the Neighborhood Model, and Ecological Regression) and creates the Monotone EI bounds described in Elzayn et al., 2025. Please note that these bounds are only valid in the presence of specific assumptions about the signs of two expected conditional covariances -- see the paper for details.
+
+For this vignette, we use the `voter-vax` dataset which comes with the `MonotoneEI` package.
+```{r example_data}
+head(voter_vax)
+```
+
+This dataset is in the correct format for the `MonotoneEI` package, because it contains rows corresponding to each geographic unit (county) and columns corresponding to
+
+- $X_n$: The proportion of individuals in the geographic unit where the predictor of interest is 1
+
+- $Y_n$: The proportion of individuals in the geographic unit where the predictor of interest is 0
+
+- $wt$: (Optional) The desired weight on each geographic unit. In this case, this is the number of votes cast in the county.
+
+The first step in any analysis with the `MonotoneEI` package is to create an EI data object. This is accomplished with the `make_ei_data` function. We can pass either individual vectors or a data.frame to the function. Weights are optional. 
+```{r make_ei_no_wt}
+ei_data_no_weight = make_ei_data(Xn = voter_vax$prop_republican, Yn = voter_vax$prop_covid_vax)
+```
+
+```{r make_ei_wt}
+ei_data = make_ei_data(data = voter_vax)
+```
+
+Once we have created an EI data object, we can calculate the method of bounds, the neighborhood model, or ecological regression. These are available as individual functions (optional bootstrap confidence intervals) as shown. They return the values for $E[Y|X=1]$ and $E[Y|X=0]$ (indicated by `_1` and `_0` respectively) as well as disparity ($E[Y|X=1]-E[Y|X=0]$).
+```{r individual_funcs}
+MOB(ei_data)
+ER(ei_data)
+NM(ei_data)
+```
+
+We also have an individual function to calculate the monotone EI bounds.
+```{r monotoneEI}
+monotone_EI(ei_data)
+```
+
+If we are interested in viewing all of these results as a summary or creating a plot similar to the visualization in Elzayn et al., 2025 to quickly compare various bounds, we can use the built-in `summarize()` and `plot()` functions. In this example, we have included bootstrap confidence intervals with 200 bootstrap replicates -- users may choose any number of replicates. The bootstrap confidence intervals on the Method of Bounds and our Monotone EI bounds are calculated following [Imbens et al., 2004](https://doi.org/10.1111/j.1468-0262.2004.00555.x).
+```{r plot}
+summarize(make_ei_data(voter_vax), 200)
+MonotoneEI::plot(make_ei_data(voter_vax), 200)
+```
+
