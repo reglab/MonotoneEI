@@ -51,14 +51,14 @@ NM <- function(data, n_bootstrap_replicates = 0){
       NM_disparity_vec[i] <- bootstrap_ER$NM_disparity
     }
 
-    NM_result$NM_1_conf = c(unname(stats::quantile(NM_1_vec, .05)),
-                            unname(stats::quantile(NM_1_vec, .95)))
+    NM_result$NM_1_conf = NM_1_vec #c(unname(stats::quantile(NM_1_vec, .05)),
+                            #unname(stats::quantile(NM_1_vec, .95)))
 
-    NM_result$NM_0_conf = c(unname(stats::quantile(NM_0_vec, .05)),
-                            unname(stats::quantile(NM_0_vec, .95)))
+    NM_result$NM_0_conf = NM_0_vec #c(unname(stats::quantile(NM_0_vec, .05)),
+                            #unname(stats::quantile(NM_0_vec, .95)))
 
-    NM_result$NM_disparity_conf = c(unname(stats::quantile(NM_disparity_vec, .05)),
-                                    unname(stats::quantile(NM_disparity_vec, .95)))
+    NM_result$NM_disparity_conf = NM_disparity_vec #c(unname(stats::quantile(NM_disparity_vec, .05)),
+                                   # unname(stats::quantile(NM_disparity_vec, .95)))
   }
 
   return(NM_result)

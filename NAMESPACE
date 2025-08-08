@@ -3,6 +3,7 @@
 export(ER)
 export(MOB)
 export(NM)
+export(analyze_ei_data)
 export(is_ei_data)
 export(make_ei_data)
 export(monotone_EI)

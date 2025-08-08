@@ -60,14 +60,14 @@ MOB <- function(data, n_bootstrap_replicates = 0){
       MOB_disparity_upper_vec[i] <- bootstrap_MOB$MOB_disparity[2]
     }
 
-    MOB_result$MOB_1_conf = c(unname(stats::quantile(MOB_1_lower_vec, .05)),
-                              unname(stats::quantile(MOB_1_upper_vec, .95)))
+    MOB_result$MOB_1_conf = list(MOB_1_lower_vec, MOB_1_upper_vec)#c(unname(stats::quantile(MOB_1_lower_vec, .05)),
+                              #unname(stats::quantile(MOB_1_upper_vec, .95)))
 
-    MOB_result$MOB_0_conf = c(unname(stats::quantile(MOB_0_lower_vec, .05)),
-                              unname(stats::quantile(MOB_0_upper_vec, .95)))
+    MOB_result$MOB_0_conf = list(MOB_0_lower_vec, MOB_0_upper_vec) #c(unname(stats::quantile(MOB_0_lower_vec, .05)),
+                              #unname(stats::quantile(MOB_0_upper_vec, .95)))
 
-    MOB_result$MOB_disparity_conf = c(unname(stats::quantile(MOB_disparity_lower_vec, .05)),
-                                      unname(stats::quantile(MOB_disparity_upper_vec, .95)))
+    MOB_result$MOB_disparity_conf = list(MOB_disparity_lower_vec, MOB_disparity_upper_vec) #c(unname(stats::quantile(MOB_disparity_lower_vec, .05)),
+                                      #unname(stats::quantile(MOB_disparity_upper_vec, .95)))
   }
 
   return(MOB_result)

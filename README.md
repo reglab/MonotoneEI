@@ -15,5 +15,5 @@ You can install the development version of MonotoneEI from
 
 ``` r
 # install.packages("pak")
-pak::pak("MortonC78483/MonotoneEI")
+pak::pak("reglab/MonotoneEI")
 ```

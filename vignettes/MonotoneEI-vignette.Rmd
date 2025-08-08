@@ -59,7 +59,7 @@ monotone_EI(ei_data)
 
 If we are interested in viewing all of these results as a summary or creating a plot similar to the visualization in Elzayn et al., 2025 to quickly compare various bounds, we can use the built-in `summarize()` and `plot()` functions. In this example, we have included bootstrap confidence intervals with 200 bootstrap replicates -- users may choose any number of replicates. The bootstrap confidence intervals on the Method of Bounds and our Monotone EI bounds are calculated following [Imbens et al., 2004](https://doi.org/10.1111/j.1468-0262.2004.00555.x).
 ```{r plot}
-summarize(make_ei_data(voter_vax), 200)
-MonotoneEI::plot(make_ei_data(voter_vax), 200)
+summarize(analyze_ei_data(make_ei_data(voter_vax), 200))
+MonotoneEI::plot(analyze_ei_data(make_ei_data(voter_vax), 200))
 ```
 

@@ -41,72 +41,72 @@ monotone_EI <- function(data, n_bootstrap_replicates = 0){
     # group 1 min
     if (which.max(c(min(NM_res$NM_1, ER_res$ER_1), MOB_res$MOB_1[1])) == 1){
       if (which.min(c(NM_res$NM_1, ER_res$ER_1)) == 1){
-        lower_grp_1 = NM_res$NM_1_conf[1]
+        lower_grp_1 = NM_res$NM_1_conf
       } else{
-        lower_grp_1 = ER_res$ER_1_conf[1]
+        lower_grp_1 = ER_res$ER_1_conf
       }
     } else{
-      lower_grp_1 = MOB_res$MOB_1_conf[1] # lower conf int of grp 1 from MOB
+      lower_grp_1 = MOB_res$MOB_1_conf[[1]] # lower conf int of grp 1 from MOB
     }
 
     # group 1 max
     if (which.min(c(max(NM_res$NM_1, ER_res$ER_1), MOB_res$MOB_1[2])) == 1){
       if (which.max(c(NM_res$NM_1, ER_res$ER_1)) == 1){
-        upper_grp_1 = NM_res$NM_1_conf[2]
+        upper_grp_1 = NM_res$NM_1_conf
       } else{
-        upper_grp_1 = ER_res$ER_1_conf[2]
+        upper_grp_1 = ER_res$ER_1_conf
       }
     } else{
-      upper_grp_1 = MOB_res$MOB_1_conf[2] # upper conf int of grp 1 from MOB
+      upper_grp_1 = MOB_res$MOB_1_conf[[2]] # upper conf int of grp 1 from MOB
     }
 
     # group 0 min
     if (which.max(c(min(NM_res$NM_0, ER_res$ER_0), MOB_res$MOB_0[1])) == 1){
       if (which.min(c(NM_res$NM_0, ER_res$ER_0)) == 1){
-        lower_grp_0 = NM_res$NM_0_conf[1]
+        lower_grp_0 = NM_res$NM_0_conf
       } else{
-        lower_grp_0 = ER_res$ER_0_conf[1]
+        lower_grp_0 = ER_res$ER_0_conf
       }
     } else{
-      lower_grp_0 = MOB_res$MOB_0_conf[1] # lower conf int of grp 0 from MOB
+      lower_grp_0 = MOB_res$MOB_0_conf[[1]] # lower conf int of grp 0 from MOB
     }
 
     # group 0 max
     if (which.min(c(max(NM_res$NM_0, ER_res$ER_0), MOB_res$MOB_0[2])) == 1){
       if (which.max(c(NM_res$NM_0, ER_res$ER_0)) == 1){
-        upper_grp_0 = NM_res$NM_0_conf[2]
+        upper_grp_0 = NM_res$NM_0_conf
       } else{
-        upper_grp_0 = ER_res$ER_0_conf[2]
+        upper_grp_0 = ER_res$ER_0_conf
       }
     } else{
-      upper_grp_0 = MOB_res$MOB_0_conf[2] # upper conf int of grp 0 from MOB
+      upper_grp_0 = MOB_res$MOB_0_conf[[2]] # upper conf int of grp 0 from MOB
     }
 
     # group 1 min
     if (which.max(c(min(NM_res$NM_disparity, ER_res$ER_disparity), MOB_res$MOB_disparity[1])) == 1){
       if (which.min(c(NM_res$NM_disparity, ER_res$ER_disparity)) == 1){
-        lower_grp_disparity = NM_res$NM_disparity_conf[1]
+        lower_grp_disparity = NM_res$NM_disparity_conf
       } else{
-        lower_grp_disparity = ER_res$ER_disparity_conf[1]
+        lower_grp_disparity = ER_res$ER_disparity_conf
       }
     } else{
-      lower_grp_disparity = MOB_res$MOB_disparity_conf[1] # lower conf int of grp 1 from MOB
+      lower_grp_disparity = MOB_res$MOB_disparity_conf[[1]] # lower conf int of grp 1 from MOB
     }
 
     # group 1 max
     if (which.min(c(max(NM_res$NM_disparity, ER_res$ER_disparity), MOB_res$MOB_disparity[2])) == 1){
       if (which.max(c(NM_res$NM_disparity, ER_res$ER_disparity)) == 1){
-        upper_grp_disparity = NM_res$NM_disparity_conf[2]
+        upper_grp_disparity = NM_res$NM_disparity_conf
       } else{
-        upper_grp_disparity = ER_res$ER_disparity_conf[2]
+        upper_grp_disparity = ER_res$ER_disparity_conf
       }
     } else{
-      upper_grp_disparity = MOB_res$MOB_disparity_conf[2] # upper conf int of grp 1 from MOB
+      upper_grp_disparity = MOB_res$MOB_disparity_conf[[2]] # upper conf int of grp 1 from MOB
     }
 
-    monotone_EI_result$monotone_1_conf = c(lower_grp_1, upper_grp_1)
-    monotone_EI_result$monotone_0_conf = c(lower_grp_0, upper_grp_0)
-    monotone_EI_result$monotone_disparity_conf = c(lower_grp_disparity, upper_grp_disparity)
+    monotone_EI_result$monotone_1_conf = list(lower_grp_1, upper_grp_1)
+    monotone_EI_result$monotone_0_conf = list(lower_grp_0, upper_grp_0)
+    monotone_EI_result$monotone_disparity_conf = list(lower_grp_disparity, upper_grp_disparity)
   }
   return(monotone_EI_result)
 }

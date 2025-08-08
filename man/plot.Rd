@@ -8,7 +8,7 @@ regression, and method of bounds by group and for the disparity.}
 plot(data, n_bootstrap_replicates = 0)
 }
 \arguments{
-\item{data}{An EI data object}
+\item{data}{An analyzed EI data object from analyze_ei_data()}
 
 \item{n_bootstrap_replicates}{The optional number of bootstrap replicates to obtain 95\% confidence intervals}
 }

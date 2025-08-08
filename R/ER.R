@@ -53,14 +53,14 @@ ER <- function(data, n_bootstrap_replicates = 0){
       ER_disparity_vec[i] <- bootstrap_ER$ER_disparity
     }
 
-    ER_result$ER_1_conf = c(unname(stats::quantile(ER_1_vec, .05)),
-                              unname(stats::quantile(ER_1_vec, .95)))
+    ER_result$ER_1_conf = ER_1_vec #c(unname(stats::quantile(ER_1_vec, .05)),
+                             # unname(stats::quantile(ER_1_vec, .95)))
 
-    ER_result$ER_0_conf = c(unname(stats::quantile(ER_0_vec, .05)),
-                              unname(stats::quantile(ER_0_vec, .95)))
+    ER_result$ER_0_conf = ER_0_vec #c(unname(stats::quantile(ER_0_vec, .05)),
+                              #unname(stats::quantile(ER_0_vec, .95)))
 
-    ER_result$ER_disparity_conf = c(unname(stats::quantile(ER_disparity_vec, .05)),
-                                      unname(stats::quantile(ER_disparity_vec, .95)))
+    ER_result$ER_disparity_conf = ER_disparity_vec #c(unname(stats::quantile(ER_disparity_vec, .05)),
+                                      #unname(stats::quantile(ER_disparity_vec, .95)))
   }
 
   return(ER_result)
